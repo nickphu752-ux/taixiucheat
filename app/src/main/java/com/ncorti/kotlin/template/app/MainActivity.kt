@@ -1,3 +1,5 @@
+package com.ncorti.kotlin.template.app
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -12,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Tạo giao diện bằng code thuần để không cần tạo file XML
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER
@@ -22,14 +23,12 @@ class MainActivity : AppCompatActivity() {
             text = "Cấp quyền & Bật Menu Nổi"
             setOnClickListener {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this@MainActivity)) {
-                    // Xin quyền hiển thị trên ứng dụng khác
                     val intent = Intent(
                         Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:$packageName")
                     )
                     startActivity(intent)
                 } else {
-                    // Nếu đã có quyền thì bật Service Menu Nổi
                     startService(Intent(this@MainActivity, FloatingService::class.java))
                 }
             }
