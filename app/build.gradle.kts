@@ -52,11 +52,12 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 dependencies {
-    // Ép dùng phiên bản ổn định, loại bỏ hoàn toàn các module mẫu gây lỗi
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.activity:activity-ktx:1.9.0")
     
-    // Thư viện Gemini AI (bắt buộc để AI nhìn ảnh và đọc lệnh)
+    // Thêm dòng này để sửa lỗi giao diện XML cũ
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
 }
