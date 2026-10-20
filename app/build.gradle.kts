@@ -55,9 +55,6 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.activity:activity-ktx:1.9.0")
-    
-    // Thêm dòng này để sửa lỗi giao diện XML cũ
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
 }
