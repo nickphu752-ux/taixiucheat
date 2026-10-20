@@ -1,20 +1,13 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-plugins {
-    id("com.android.application")
-    kotlin("android")
-}
-
-val APP_VERSION_NAME : String by project
-val APP_VERSION_CODE : String by project
-val APP_ID : String by project
-
 android {
-    compileSdk = libs.versions.compile.sdk.version.get().toInt()
+    // 1. Thay dòng libs.versions... bằng số 35
+    compileSdk = 35
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
+        
+        // 2. Bổ sung thêm dòng targetSdk này
+        targetSdk = 35 
+        
         namespace = APP_ID
 
         applicationId = APP_ID
@@ -44,40 +37,4 @@ android {
         abortOnError = true
         disable.add("GradleDependency")
     }
-
-    // Use this block to configure different flavors
-//    flavorDimensions("version")
-//    productFlavors {
-//        create("full") {
-//            dimension = "version"
-//            applicationIdSuffix = ".full"
-//        }
-//        create("demo") {
-//            dimension = "version"
-//            applicationIdSuffix = ".demo"
-//        }
-//    }
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-    }
-}
-
-dependencies {
-    implementation(projects.libraryAndroid)
-    implementation(projects.libraryCompose)
-    implementation(projects.libraryKotlin)
-
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraint.layout)
-    implementation(libs.androidx.core.ktx)
-
-    testImplementation(libs.junit)
-
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.espresso.core)
 }
